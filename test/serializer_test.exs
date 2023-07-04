@@ -19,6 +19,24 @@ defmodule Graph.SerializerTests do
             """} = Graph.to_dot(g)
   end
 
+  test "to_mermaid/1" do
+    g = kitchen_sink_graph()
+
+    assert {:ok,
+            """
+            graph TB
+                97(("start"))
+                98(("{:complex, :label}"))
+                99(("c"))
+                100(("finish"))
+                97 --> 98((weight=3))
+                98 --> 99((label=5, weight=1))
+                98 --> 100((label=1.0, weight=3))
+                99 --> 100((weight=1))
+
+            """} = Graph.to_mermaid(g)
+  end
+
   test "to_edgelist" do
     g = kitchen_sink_graph()
 

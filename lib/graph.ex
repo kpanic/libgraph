@@ -161,6 +161,10 @@ defmodule Graph do
     Graph.Serializers.Edgelist.serialize(g)
   end
 
+  def to_mermaid(%__MODULE__{} = g) do
+    Graph.Serializers.Mermaid.serialize(g)
+  end
+
   @doc """
   Returns the number of edges in the graph.
 
